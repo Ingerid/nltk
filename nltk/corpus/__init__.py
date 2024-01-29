@@ -241,6 +241,9 @@ multext_east: MTECorpusReader = LazyCorpusLoader(
 names: WordListCorpusReader = LazyCorpusLoader(
     "names", WordListCorpusReader, r"(?!\.).*\.txt", encoding="ascii"
 )
+nb_uttale: NBUttaleCorpusReader = LazyCorpusLoader(
+    "nb_uttale", NBUttaleCorpusReader, ["nb_uttale"]
+)
 nps_chat: NPSChatCorpusReader = LazyCorpusLoader(
     "nps_chat", NPSChatCorpusReader, r"(?!README|\.).*\.xml", tagset="wsj"
 )

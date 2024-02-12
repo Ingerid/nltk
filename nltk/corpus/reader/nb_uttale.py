@@ -1,3 +1,10 @@
+# Natural Language Toolkit: Nasjonalbiblioteket Uttale CorpusReader
+#
+# Copyright (C) 2001-2023 NLTK Project
+# Author: Ingerid Dale <ingerid.dale@nb.no>
+# URL: <https://www.nltk.org/>
+# For license information, see LICENSE.TXT
+
 """
 NB Uttale is a Norwegian pronunciation dictionary,
 with orthographic wordforms in the bokmål written standard,

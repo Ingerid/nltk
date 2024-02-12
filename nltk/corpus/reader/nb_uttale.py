@@ -1,7 +1,21 @@
 """
 NB Uttale is a Norwegian pronunciation dictionary,
 with orthographic wordforms in the bokmål written standard,
-and phonemic transcriptions for the Eastern Norwegian dialect in SAMPA.
+and phonemic transcriptions for the Eastern Norwegian dialect in NoFAbet, an adjusted version of ARPAbet.
+There are 819856 word-transcription pairs (WTP) in the lexicon.
+
+The code here has been copied from the cmudict CorpusReader and adjusted to fit NB Uttale.
+
+File format:
+Each line consists of a lower case or title case word (e.g. proper names), and its transcription.
+Multiword expressions are written with tilda (~) between the words.
+Vowels are marked for stress (1=primary, 2=secondary, 0=no stress).
+
+Example:
+ordbok  OO2 R B OO3 K
+over~bord       OA3 V AEH0 R ~ B OO1 R
+Cuba    K UU1 B AH0
+
 """
 
 from nltk.corpus.reader.api import *
@@ -17,7 +31,7 @@ class NBUttaleCorpusReader(CorpusReader):
         """
         return concat(
             [
-                StreamBackedCorpusView(fileid, read_cmudict_block, encoding=enc)
+                StreamBackedCorpusView(fileid, read_pronlex_block, encoding=enc)
                 for fileid, enc in self.abspaths(None, True)
             ]
         )
@@ -36,7 +50,7 @@ class NBUttaleCorpusReader(CorpusReader):
         return dict(Index(self.entries()))
 
 
-def read_cmudict_block(stream):
+def read_pronlex_block(stream):
     entries = []
     while len(entries) < 100:  # Read 100 at a time.
         line = stream.readline()
